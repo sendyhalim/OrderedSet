@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "79E984D41EF4409E005231AE"
+               BlueprintIdentifier = "79E9851F1EF44591005231AE"
                BuildableName = "OrderedSet.framework"
-               BlueprintName = "OrderedSet"
+               BlueprintName = "OrderedSet-macOS"
                ReferencedContainer = "container:OrderedSet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "79E984D41EF4409E005231AE"
+            BlueprintIdentifier = "79E9851F1EF44591005231AE"
             BuildableName = "OrderedSet.framework"
-            BlueprintName = "OrderedSet"
+            BlueprintName = "OrderedSet-macOS"
             ReferencedContainer = "container:OrderedSet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "79E984D41EF4409E005231AE"
+            BlueprintIdentifier = "79E9851F1EF44591005231AE"
             BuildableName = "OrderedSet.framework"
-            BlueprintName = "OrderedSet"
+            BlueprintName = "OrderedSet-macOS"
             ReferencedContainer = "container:OrderedSet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
