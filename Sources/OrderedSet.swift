@@ -80,7 +80,7 @@ struct OrderedSet<T: Hashable>: ExpressibleByArrayLiteral {
 
   mutating func insert(element: T, atIndex: Int) {
     if atIndex == 0 {
-      elements = elements + [element]
+      elements = [element] + elements
     } else if atIndex == count {
       elements.append(element)
     } else {
