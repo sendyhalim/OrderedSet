@@ -6,7 +6,6 @@
 //  Copyright © 2017 Sendy Halim. All rights reserved.
 //
 
-
 import Nimble
 import Quick
 @testable import OrderedSet

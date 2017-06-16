@@ -166,7 +166,7 @@ struct OrderedSetGenerator<T: Hashable>: IteratorProtocol {
   init(set: OrderedSet<T>) {
     generator = set.elements.makeIterator()
   }
-  
+
   mutating func next() -> T? {
     return generator.next()
   }
