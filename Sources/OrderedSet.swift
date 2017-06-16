@@ -8,19 +8,19 @@
 
 import Foundation
 
-struct OrderedSet<T: Hashable>: ExpressibleByArrayLiteral {
+public struct OrderedSet<T: Hashable>: ExpressibleByArrayLiteral {
   fileprivate var indexByElement: [T: Int] = [:]
   fileprivate var elements: Array<T> = []
 
-  var count: Int {
+  public var count: Int {
     return elements.count
   }
 
-  init(elements: [T]) {
+  public init(elements: [T]) {
     append(elements: elements)
   }
 
-  init(arrayLiteral elements: T...) {
+  public init(arrayLiteral elements: T...) {
     append(elements: elements)
   }
 
@@ -28,13 +28,13 @@ struct OrderedSet<T: Hashable>: ExpressibleByArrayLiteral {
     return index > -1 && index < elements.count
   }
 
-  mutating func append(elements: [T]) {
+  public mutating func append(elements: [T]) {
     for element in elements {
       append(element: element)
     }
   }
 
-  mutating func append(element: T) {
+  public mutating func append(element: T) {
     if indexByElement[element] != nil {
       return
     }
@@ -43,7 +43,7 @@ struct OrderedSet<T: Hashable>: ExpressibleByArrayLiteral {
     elements.append(element)
   }
 
-  mutating func swap(fromIndex: Int, toIndex: Int) {
+  public mutating func swap(fromIndex: Int, toIndex: Int) {
     guard validIndex(index: fromIndex) && validIndex(index: toIndex) else {
       return
     }
@@ -59,7 +59,7 @@ struct OrderedSet<T: Hashable>: ExpressibleByArrayLiteral {
   }
 
   @discardableResult
-  mutating func remove(element: T) -> T? {
+  public mutating func remove(element: T) -> T? {
     guard let index = indexByElement[element] else {
       return .none
     }
@@ -68,7 +68,7 @@ struct OrderedSet<T: Hashable>: ExpressibleByArrayLiteral {
   }
 
   @discardableResult
-  mutating func remove(index: Int) -> T? {
+  public mutating func remove(index: Int) -> T? {
     guard validIndex(index: index) else {
       return .none
     }
@@ -78,7 +78,7 @@ struct OrderedSet<T: Hashable>: ExpressibleByArrayLiteral {
     return remove(element: element, index: index)
   }
 
-  mutating func insert(element: T, atIndex: Int) {
+  public mutating func insert(element: T, atIndex: Int) {
     if atIndex == 0 {
       elements = [element] + elements
     } else if atIndex == count {
@@ -103,13 +103,13 @@ struct OrderedSet<T: Hashable>: ExpressibleByArrayLiteral {
     return elements.remove(at: index)
   }
 
-  func has(element: T) -> Bool {
+  public func has(element: T) -> Bool {
     return indexByElement[element] != nil
   }
 }
 
 extension OrderedSet: CustomStringConvertible {
-  var description: String {
+  public var description: String {
     return elements.reduce("OrderedSet \(count) objects: ") {
       "\($0), \($1)"
     }
@@ -126,17 +126,17 @@ extension OrderedSet: MutableCollection {
     return i + 1
   }
 
-  typealias Index = Int
+  public typealias Index = Int
 
-  var startIndex: Int {
+  public var startIndex: Int {
     return 0
   }
 
-  var endIndex: Int {
+  public var endIndex: Int {
     return elements.count
   }
 
-  subscript(index: Index) -> T {
+  public subscript(index: Index) -> T {
     get {
       return elements[index]
     }
@@ -151,15 +151,15 @@ extension OrderedSet: MutableCollection {
 }
 
 extension OrderedSet: Sequence {
-  typealias Iterator = OrderedSetGenerator<T>
+  public typealias Iterator = OrderedSetGenerator<T>
 
-  func makeIterator() -> Iterator {
+  public func makeIterator() -> Iterator {
     return OrderedSetGenerator(set: self)
   }
 }
 
-struct OrderedSetGenerator<T: Hashable>: IteratorProtocol {
-  typealias Element = T
+public struct OrderedSetGenerator<T: Hashable>: IteratorProtocol {
+  public typealias Element = T
 
   var generator: IndexingIterator<Array<T>>
 
@@ -167,7 +167,7 @@ struct OrderedSetGenerator<T: Hashable>: IteratorProtocol {
     generator = set.elements.makeIterator()
   }
 
-  mutating func next() -> T? {
+  public mutating func next() -> T? {
     return generator.next()
   }
 }
