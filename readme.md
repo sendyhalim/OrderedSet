@@ -20,7 +20,7 @@ users.has(element: "john") // true
 
 // Add element to set
 users.append(element: "foo")
-users.append(element: ["foo", "bar"])
+users.append(elements: ["foo", "bar"])
 
 // Insert element at index, wont' do anything if "foo" is already in the set
 users.insert(element: "foo", atIndex: 1)
