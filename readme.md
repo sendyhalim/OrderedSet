@@ -34,6 +34,11 @@ users.count
 
 // Swap element position
 users.swap(fromIndex: 1, toIndex: 3)
+
+// For loop
+for user in users {
+  print(user)
+}
 ```
 
 # License
