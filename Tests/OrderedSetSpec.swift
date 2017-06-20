@@ -107,7 +107,7 @@ class OrderetSetSpec: QuickSpec {
           expect(set[2]) == "hot"
         }
       }
-      
+
       context("when we swap element at index 0 to 0") {
         beforeEach {
           set.swap(fromIndex: 0, toIndex: 0)
