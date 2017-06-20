@@ -107,6 +107,18 @@ class OrderetSetSpec: QuickSpec {
           expect(set[2]) == "hot"
         }
       }
+      
+      context("when we swap element at index 0 to 0") {
+        beforeEach {
+          set.swap(fromIndex: 0, toIndex: 0)
+        }
+
+        it("should swap the set") {
+          expect(set[0]) == "hot"
+          expect(set[1]) == "chilli"
+          expect(set[2]) == "peppers"
+        }
+      }
 
       context("when target index is out of range") {
         beforeEach {
