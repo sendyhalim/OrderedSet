@@ -24,60 +24,23 @@ public struct OrderedSet<T: Hashable>: ExpressibleByArrayLiteral {
     append(elements: elements)
   }
 
-  private func validIndex(index: Int) -> Bool {
-    return index > -1 && index < elements.count
+  ///  Check if element exists in set
+  ///
+  ///  - parameter element: Element to be checked
+  ///
+  ///  - returns: Boolean
+  public func has(element: T) -> Bool {
+    return indexByElement[element] != nil
   }
 
-  public mutating func append(elements: [T]) {
-    for element in elements {
-      append(element: element)
-    }
-  }
-
-  public mutating func append(element: T) {
-    if indexByElement[element] != nil {
-      return
-    }
-
-    indexByElement[element] = elements.count
-    elements.append(element)
-  }
-
-  public mutating func swap(fromIndex: Int, toIndex: Int) {
-    guard validIndex(index: fromIndex) && validIndex(index: toIndex) else {
-      return
-    }
-
-    let fromElement = elements[fromIndex]
-    let toElement = elements[toIndex]
-
-    indexByElement[fromElement] = toIndex
-    indexByElement[toElement] = fromIndex
-
-    elements[fromIndex] = toElement
-    elements[toIndex] = fromElement
-  }
-
-  @discardableResult
-  public mutating func remove(element: T) -> T? {
-    guard let index = indexByElement[element] else {
-      return .none
-    }
-
-    return remove(element: element, index: index)
-  }
-
-  @discardableResult
-  public mutating func remove(index: Int) -> T? {
-    guard validIndex(index: index) else {
-      return .none
-    }
-
-    let element = elements[index]
-
-    return remove(element: element, index: index)
-  }
-
+  ///  Insert element at the given index
+  ///  - If inserted at the first index, it will prepend element to the set
+  ///  - If inserted at the end index, it iwll append element to the set
+  ///  - If inserted at the middle it will shift elements
+  ///    around it (will not replace another element at the given index)
+  ///
+  ///  - parameter element: Element to be inserted
+  ///  - parameter atIndex: The index where the element should be inserted
   public mutating func insert(element: T, atIndex: Int) {
     if atIndex == 0 {
       elements = [element] + elements
@@ -97,14 +60,84 @@ public struct OrderedSet<T: Hashable>: ExpressibleByArrayLiteral {
     }
   }
 
+  ///  Append elements to the set
+  ///
+  ///  - parameter elements: elements to be appended
+  public mutating func append(elements: [T]) {
+    for element in elements {
+      append(element: element)
+    }
+  }
+
+  ///  Append element to the set
+  ///
+  ///  - parameter element: Element to be appended
+  public mutating func append(element: T) {
+    if indexByElement[element] != nil {
+      return
+    }
+
+    indexByElement[element] = elements.count
+    elements.append(element)
+  }
+
+  ///  Swap position of elements
+  ///
+  ///  - parameter fromIndex: Index of first element to be swapped from
+  ///  - parameter toIndex:   Index of second element to be swapped to
+  public mutating func swap(fromIndex: Int, toIndex: Int) {
+    guard validIndex(index: fromIndex) && validIndex(index: toIndex) else {
+      return
+    }
+
+    let fromElement = elements[fromIndex]
+    let toElement = elements[toIndex]
+
+    indexByElement[fromElement] = toIndex
+    indexByElement[toElement] = fromIndex
+
+    elements[fromIndex] = toElement
+    elements[toIndex] = fromElement
+  }
+
+  private func validIndex(index: Int) -> Bool {
+    return index > -1 && index < elements.count
+  }
+
+  ///  Remove element from the set
+  ///
+  ///  - parameter element: Element to be removed
+  ///
+  ///  - returns: Removed element
+  @discardableResult
+  public mutating func remove(element: T) -> T? {
+    guard let index = indexByElement[element] else {
+      return .none
+    }
+
+    return remove(element: element, index: index)
+  }
+
+  ///  Remove element at the given index
+  ///
+  ///  - parameter index: Index of element to be removed
+  ///
+  ///  - returns: Removed element
+  @discardableResult
+  public mutating func remove(index: Int) -> T? {
+    guard validIndex(index: index) else {
+      return .none
+    }
+
+    let element = elements[index]
+
+    return remove(element: element, index: index)
+  }
+
   mutating private func remove(element: T, index: Int) -> T {
     indexByElement[element] = nil
 
     return elements.remove(at: index)
-  }
-
-  public func has(element: T) -> Bool {
-    return indexByElement[element] != nil
   }
 }
 
