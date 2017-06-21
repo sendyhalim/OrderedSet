@@ -173,5 +173,11 @@ class OrderetSetSpec: QuickSpec {
         }
       }
     }
+
+    describe("extension CustomStringConvertible") {
+      it("should print out the elements") {
+        expect(String(describing: set)) == "OrderedSet 3 objects: [\"hot\", \"chilli\", \"peppers\"]"
+      }
+    }
   }
 }

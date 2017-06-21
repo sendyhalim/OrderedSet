@@ -143,9 +143,7 @@ public struct OrderedSet<T: Hashable>: ExpressibleByArrayLiteral {
 
 extension OrderedSet: CustomStringConvertible {
   public var description: String {
-    return elements.reduce("OrderedSet \(count) objects: ") {
-      "\($0), \($1)"
-    }
+    return "OrderedSet \(count) objects: \(elements)"
   }
 }
 
