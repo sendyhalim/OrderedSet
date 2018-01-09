@@ -137,7 +137,15 @@ public struct OrderedSet<T: Hashable>: ExpressibleByArrayLiteral {
   mutating private func remove(element: T, index: Int) -> T {
     indexByElement[element] = nil
 
-    return elements.remove(at: index)
+    let removedElement: T = elements.remove(at: index)
+
+    // Now we need to update indexByElement because if we're deleting in the middle
+    // then all the elements after the deleted element will be shifted to the left
+    for i in index..<elements.count {
+      indexByElement[elements[i]] = i
+    }
+
+    return removedElement
   }
 }
 
