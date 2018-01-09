@@ -50,7 +50,7 @@ class OrderetSetSpec: QuickSpec {
         }
       }
 
-      context("when element is removed") {
+      context("when an element is removed") {
         beforeEach {
           set.remove(element: "hot")
         }
@@ -61,6 +61,18 @@ class OrderetSetSpec: QuickSpec {
 
         it("should only have 2 elements") {
           expect(set.count) == 2
+        }
+      }
+
+      context("when all elements are removed") {
+        beforeEach {
+          set.remove(element: "chilli")
+          set.remove(element: "peppers")
+          set.remove(element: "hot")
+        }
+
+        it("should only have 0 elements") {
+          expect(set.count) == 0
         }
       }
     }
