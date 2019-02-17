@@ -6,8 +6,9 @@
 //  Copyright © 2017 Sendy Halim. All rights reserved.
 //
 
-import Nimble
 import Quick
+import Nimble
+
 @testable import OrderedSet
 
 class OrderetSetSpec: QuickSpec {

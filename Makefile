@@ -1,14 +1,12 @@
-platform = --platform ios --platform macos
 xcode_flags = -project "OrderedSet.xcodeproj" -scheme "OrderedSet" -configuration "Release" DSTROOT=/tmp/OrderedSet.dst
 xcode_flags_test = -project "OrderedSet.xcodeproj" -scheme "OrderedSet" -configuration "Debug"
-components_plist = "Supporting Files/Components.plist"
 temporary_dir = /tmp/OrderedSet.dst
 
 bootstrap:
-	carthage bootstrap $(platform)
+	carthage bootstrap
 
 update:
-	carthage update $(platform)
+	carthage update
 
 synx:
 	synx OrderedSet.xcodeproj
